@@ -1,7 +1,8 @@
 import { Pressable, StyleSheet } from "react-native";
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { useTheme } from "@react-navigation/native";
 import SubHeading2 from "../texts/SubHeading2";
+import { MainContext } from "../../contexts";
 
 type MyButtonProps = {
   style?: object;
@@ -13,27 +14,22 @@ type MyButtonProps = {
 
 const MyButton: FC<MyButtonProps> = ({
   style,
-  type: type = "light-primary",
+  type: type = "primary",
   text: text = "Button",
   disabled,
   onPress,
 }) => {
-  const buttonStyles = StyleSheet.create({
-    "light-primary": {
-      color: "#0F1828",
-      backgroundColor: "#F5F5F5",
+  const { state } = useContext(MainContext);
+  const { theme } = state;
+
+  const styles = StyleSheet.create({
+    primary: {
+      color: theme === "dark" ? "#0F1828" : "#0F1828",
+      backgroundColor: theme === "dark" ? "#F5F5F5" : "#F5F5F5",
     },
-    "light-secondary": {
-      color: "#F7F7FC",
-      backgroundColor: "#002DE3",
-    },
-    "dark-primary": {
-      color: "#0F1828",
-      backgroundColor: "#F5F5F5",
-    },
-    "dark-secondary": {
-      color: "#F7F7FC",
-      backgroundColor: "#375FFF",
+    secondary: {
+      color: theme === "dark" ? "#F7F7FC" : "#F7F7FC",
+      backgroundColor: theme === "dark" ? "#375FFF" : "#002DE3",
     },
   });
 
@@ -47,16 +43,15 @@ const MyButton: FC<MyButtonProps> = ({
           height: 52,
           alignItems: "center",
           justifyContent: "center",
+          backgroundColor: styles[type as keyof typeof styles].backgroundColor,
         },
         {
-          backgroundColor:
-            buttonStyles[type as keyof typeof buttonStyles].backgroundColor,
           ...style,
         },
       ]}
     >
       <SubHeading2
-        style={{ color: buttonStyles[type as keyof typeof buttonStyles].color }}
+        style={{ color: styles[type as keyof typeof styles].color }}
         text={text}
       />
     </Pressable>

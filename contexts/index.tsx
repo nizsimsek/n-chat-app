@@ -16,7 +16,7 @@ type InitialStateType = {
   chats: any[];
 };
 
-const initialState = {
+const initialState: InitialStateType = {
   loading: false,
   theme: "dark",
   user: {

@@ -12,7 +12,7 @@ type WalkthroughScreenProps = {
 
 const WalkthroughScreen: FC<WalkthroughScreenProps> = ({ navigation }) => {
   const { state, dispatch } = useContext(MainContext);
-  const { loading, theme } = state;
+  const { theme } = state;
 
   const icon =
     theme == "dark"
@@ -31,14 +31,14 @@ const WalkthroughScreen: FC<WalkthroughScreenProps> = ({ navigation }) => {
         </View>
         <View style={styles.buttonContainer}>
           <MyButton
-            type="light-primary"
+            type="primary"
             text="Terms & Privacy Policy"
             onPress={() => {
               console.log("Terms & Privacy Policy");
             }}
           />
           <MyButton
-            type="light-secondary"
+            type="secondary"
             text="Start Messaging"
             onPress={() => {
               navigation.navigate("NumberScreen");

@@ -2,19 +2,24 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: "100%",
     padding: 20,
+    justifyContent: "center",
   },
-  iconContainer: {
+  contentContainer: {
     flex: 1,
     justifyContent: "center",
+    gap: 20,
+  },
+  descriptionContainer: {
+    flexDirection: "column",
+    gap: 10,
+  },
+  inputContainer: {
+    flexDirection: "row",
     alignItems: "center",
-    padding: 40,
-  },
-  iconText: {
-    textAlign: "center",
-  },
-  buttonContainer: {
+    justifyContent: "center",
+    marginVertical: 30,
     gap: 10,
   },
 });

@@ -3,8 +3,6 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  StyleSheet,
-  Text,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
@@ -52,83 +50,55 @@ const NumberScreen: FC<NumberScreenProps> = ({ navigation }) => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View
-            style={{
-              height: "100%",
-              width: "100%",
-              padding: 20,
-              justifyContent: "center",
-            }}
-          >
-            <View
-              style={{
-                flexDirection: "column",
-                gap: 10,
-              }}
-            >
-              <Heading2
-                style={{
-                  textAlign: "center",
-                }}
-                text="Enter Your Phone Number"
-              />
-              <Body2
-                style={{
-                  textAlign: "center",
-                  paddingHorizontal: 30,
-                }}
-                text="Please confirm your country code and enter your phone number"
-              />
+          <View style={styles.container}>
+            <View style={styles.contentContainer}>
+              <View style={styles.descriptionContainer}>
+                <Heading2
+                  style={{
+                    textAlign: "center",
+                  }}
+                  text="Enter Your Phone Number"
+                />
+                <Body2
+                  style={{
+                    textAlign: "center",
+                    paddingHorizontal: 30,
+                  }}
+                  text="Please confirm your country code and enter your phone number"
+                />
+              </View>
+              <View style={styles.inputContainer}>
+                <MyInput
+                  onChangeText={setCountryCode}
+                  value={countryCode}
+                  placeholder="Code"
+                  keyboardType="numeric"
+                  inputType="number"
+                  minLength={3}
+                  maxLength={4}
+                  style={{
+                    width: "20%",
+                  }}
+                />
+                <MyInput
+                  onChangeText={setNumber}
+                  value={number}
+                  placeholder="Phone Number"
+                  keyboardType="numeric"
+                  inputType="number"
+                  minLength={10}
+                  maxLength={12}
+                  style={{
+                    width: "80%",
+                  }}
+                />
+              </View>
             </View>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                marginVertical: 30,
-                gap: 10,
-              }}
-            >
-              <MyInput
-                onChangeText={setCountryCode}
-                value={countryCode}
-                placeholder="Code"
-                keyboardType="numeric"
-                inputType="number"
-                minLength={3}
-                maxLength={4}
-                style={{
-                  width: "20%",
-                }}
-              />
-              <MyInput
-                onChangeText={setNumber}
-                value={number}
-                placeholder="Phone Number"
-                keyboardType="numeric"
-                inputType="number"
-                minLength={10}
-                maxLength={12}
-                style={{
-                  width: "80%",
-                }}
-              />
-            </View>
-            <View
-              style={{
-                position: "absolute",
-                bottom: 0,
-                padding: 10,
-                left: 0,
-                right: 0,
-              }}
-            >
-              <MyButton
-                type="light-secondary"
-                text="Continue"
-                onPress={continueButtonHandler}
-              />
-            </View>
+            <MyButton
+              type="secondary"
+              text="Continue"
+              onPress={continueButtonHandler}
+            />
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>

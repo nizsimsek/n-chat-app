@@ -1,6 +1,7 @@
 import { Keyboard, StyleSheet, TextInput, View } from "react-native";
 ("react-native");
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
+import { MainContext } from "../../contexts";
 
 type MyInputProps = {
   style?: object;
@@ -25,6 +26,23 @@ const MyInput: FC<MyInputProps> = ({
   autoCorrect = false,
   onChangeText,
 }) => {
+  
+  const { state } = useContext(MainContext);
+  const { theme } = state;
+
+  const styles = StyleSheet.create({
+    input: {
+      color: theme === "dark" ? "#F7F7FC" : "#0F1828",
+      backgroundColor: theme === "dark" ? "#152033" : "#F7F7FC",
+      borderRadius: 4,
+      height: 36,
+      paddingHorizontal: 8,
+      paddingVertical: 6,
+    },
+    inputPlaceholder: {
+      color: "#B7B7B7",
+    },
+  });
   return (
     <TextInput
       style={[styles.input, style]}
@@ -42,17 +60,3 @@ const MyInput: FC<MyInputProps> = ({
 };
 
 export default MyInput;
-
-const styles = StyleSheet.create({
-  input: {
-    color: "#0F1828",
-    backgroundColor: "#F7F7FC",
-    borderRadius: 4,
-    height: 36,
-    paddingHorizontal: 8,
-    paddingVertical: 6,
-  },
-  inputPlaceholder: {
-    color: "#B7B7B7",
-  },
-});

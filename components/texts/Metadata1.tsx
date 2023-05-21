@@ -1,6 +1,6 @@
 import { StyleSheet, Text } from "react-native";
-import React, { FC } from "react";
-import { useTheme } from "@react-navigation/native";
+import React, { FC, useContext } from "react";
+import { MainContext } from "../../contexts";
 
 type Metadata1Props = {
   style?: object;
@@ -8,13 +8,23 @@ type Metadata1Props = {
 };
 
 const Metadata1: FC<Metadata1Props> = ({ style, text }) => {
-  const { colors } = useTheme();
+    
+  const { state } = useContext(MainContext);
+  const { theme } = state;
+
+  const styles = StyleSheet.create({
+    text: {
+      fontFamily: "Mulish-Regular",
+      fontSize: 12,
+      color: theme === "dark" ? "#F7F7FC" : "#0F1828",
+    },
+  });
+
   return (
     <Text
       style={[
         styles.text,
         {
-          color: colors.text,
           ...style,
         },
       ]}
@@ -25,11 +35,3 @@ const Metadata1: FC<Metadata1Props> = ({ style, text }) => {
 };
 
 export default Metadata1;
-
-const styles = StyleSheet.create({
-  text: {
-    fontFamily: "Mulish-Regular",
-    fontSize: 12,
-    color: "#000000",
-  },
-});

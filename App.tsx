@@ -29,7 +29,7 @@ export default function App() {
   }
 
   const DefaultThemeConfig: any = {
-    dark: theme === "dark",
+    dark: false,
     colors: {
       background: "#FFFFFF",
       buttonBgPrimary: "#F5F5F5",
@@ -47,7 +47,7 @@ export default function App() {
   };
 
   const DarkThemeConfig: any = {
-    dark: theme === "dark",
+    dark: true,
     colors: {
       background: "#0F1828",
       buttonBgPrimary: "#F5F5F5",
@@ -67,12 +67,8 @@ export default function App() {
   return (
     <MainProvider>
       <SafeAreaProvider>
-        <StatusBar style={
-          theme === "dark" ? "light" : "dark"
-        } />
-        <NavigationContainer
-          theme={theme === "dark" ? DarkThemeConfig : DefaultThemeConfig}
-        >
+        <StatusBar style="auto" />
+        <NavigationContainer>
           <MainStackNavigator />
         </NavigationContainer>
       </SafeAreaProvider>

@@ -1,6 +1,6 @@
 import { StyleSheet, Text } from "react-native";
-import React, { FC } from "react";
-import { useTheme } from "@react-navigation/native";
+import React, { FC, useContext } from "react";
+import { MainContext } from "../../contexts";
 
 type SubHeading1Props = {
   style?: object;
@@ -8,13 +8,23 @@ type SubHeading1Props = {
 };
 
 const SubHeading1: FC<SubHeading1Props> = ({ style, text }) => {
-  const { colors } = useTheme();
+  
+  const { state } = useContext(MainContext);
+  const { theme } = state;
+
+  const styles = StyleSheet.create({
+    text: {
+      fontFamily: "Mulish-SemiBold",
+      fontSize: 18,
+      color: theme === "dark" ? "#F7F7FC" : "#0F1828",
+    },
+  });
+
   return (
     <Text
       style={[
         styles.text,
         {
-          color: colors.text,
           ...style,
         },
       ]}
@@ -25,11 +35,3 @@ const SubHeading1: FC<SubHeading1Props> = ({ style, text }) => {
 };
 
 export default SubHeading1;
-
-const styles = StyleSheet.create({
-  text: {
-    fontFamily: "Mulish-SemiBold",
-    fontSize: 18,
-    color: "#000000",
-  },
-});

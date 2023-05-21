@@ -1,6 +1,6 @@
 import { StyleSheet, Text } from "react-native";
-import React, { FC } from "react";
-import { useTheme } from "@react-navigation/native";
+import React, { FC, useContext } from "react";
+import { MainContext } from "../../contexts";
 
 type Heading2Props = {
   style?: object;
@@ -8,13 +8,23 @@ type Heading2Props = {
 };
 
 const Heading2: FC<Heading2Props> = ({ style, text }) => {
-  const { colors } = useTheme();
+  
+  const { state } = useContext(MainContext);
+  const { theme } = state;
+
+  const styles = StyleSheet.create({
+    text: {
+      fontFamily: "Mulish-Bold",
+      fontSize: 24,
+      color: theme === "dark" ? "#F7F7FC" : "#0F1828",
+    },
+  });
+
   return (
     <Text
       style={[
         styles.text,
         {
-          color: colors.text,
           ...style,
         },
       ]}
@@ -25,11 +35,3 @@ const Heading2: FC<Heading2Props> = ({ style, text }) => {
 };
 
 export default Heading2;
-
-const styles = StyleSheet.create({
-  text: {
-    fontFamily: "Mulish-Bold",
-    fontSize: 24,
-    color: "#000000",
-  },
-});
