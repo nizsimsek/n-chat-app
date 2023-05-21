@@ -1,6 +1,4 @@
-export const reducer = (state: any, action: { type: any; payload: any }) => {
-  console.log("reducer", action);
-  
+export const mainReducer = (state: any, action: { type: any; payload: any }) => {
   switch (action.type) {
     case "SET_LOADING":
       return {

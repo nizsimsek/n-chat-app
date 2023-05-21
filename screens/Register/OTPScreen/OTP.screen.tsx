@@ -14,6 +14,7 @@ import Heading2 from "../../../components/texts/Heading2";
 import Body2 from "../../../components/texts/Body2";
 import OTPInput from "./components/OTPInput";
 import MyButton from "../../../components/buttons/MyButton";
+import Metadata1 from "../../../components/texts/Metadata1";
 
 type OTPScreenProps = {
   route: any;
@@ -37,7 +38,6 @@ const OTPScreen: FC<OTPScreenProps> = ({ route, navigation }) => {
       ]);
       return;
     }
-    console.log("ProfileScreen");
     navigation.navigate("ProfileScreen");
   };
 
@@ -105,6 +105,12 @@ const OTPScreen: FC<OTPScreenProps> = ({ route, navigation }) => {
                   " " +
                   number
                 }
+              />
+              <Metadata1
+                style={{
+                  textAlign: "center",
+                }}
+                text={(minute < 10 ? "0" + minute : minute) + ":" + (second < 10 ? "0" + second : second)}
               />
             </View>
             <View

@@ -67,7 +67,9 @@ export default function App() {
   return (
     <MainProvider>
       <SafeAreaProvider>
-        <StatusBar style="auto" />
+        <StatusBar style={
+          theme === "dark" ? "light" : "dark"
+        } />
         <NavigationContainer
           theme={theme === "dark" ? DarkThemeConfig : DefaultThemeConfig}
         >

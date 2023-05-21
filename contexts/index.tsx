@@ -1,5 +1,5 @@
 import React, { FC, createContext, useReducer } from "react";
-import { reducer } from "../reducers";
+import { mainReducer } from "../reducers";
 
 type InitialStateType = {
   loading: boolean;
@@ -18,7 +18,7 @@ type InitialStateType = {
 
 const initialState = {
   loading: false,
-  theme: "light",
+  theme: "dark",
   user: {
     name: "",
     firstName: "",
@@ -37,18 +37,6 @@ const MainContext = createContext<{
 }>({
   state: initialState,
   dispatch: () => null,
-});
-
-const mainReducer = (
-  { loading, theme, user, contacts, filteredContacts, chats }: InitialStateType,
-  action: any
-) => ({
-    loading: reducer(loading, action),
-    theme: reducer(theme, action),
-    user: reducer(user, action),
-    contacts: reducer(contacts, action),
-    filteredContacts: reducer(filteredContacts, action),
-    chats: reducer(chats, action),
 });
 
 type MainProviderProps = {
